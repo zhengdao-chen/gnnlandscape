@@ -2,7 +2,8 @@ import numpy as np
 # import scipy as sp
 from numpy.linalg import inv
 from scipy.linalg import eigh, cholesky, eigvalsh, norm
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
+# plt.switch_backend('agg')
 
 def get_adjacency_matrix(n, p, q):
 	A = np.zeros([n * 2, n * 2])
@@ -13,7 +14,7 @@ def get_adjacency_matrix(n, p, q):
 	for i in range(n * 2):
 		for j in range(i+1, n * 2):
 			A[i, j] = A[j, i]
-	A = A * (np.ones(n * 2) - np.eye(n * 2))	# set the diagonal to zeros 
+	A = A * (np.ones(n * 2) - np.eye(n * 2))	# set the diagonal to zeros
 	return A
 
 def get_Lambda(w, d, c):
@@ -67,8 +68,10 @@ def plot_hist(arr):
 
 # n = 900
 # n_lst = [4, 16, 64, 256, 1024, 4096]
-n_lst = [4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]	# different (half-)sizes of the graph
+# n_lst = [4]
+n_lst = [4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192]	# different (half-)sizes of the graph
 # n_lst = [4, 16, 64, 256, 1024]
+print ('16:42')
 
 # lists for storing the quantities we are interested in, as sequences indexed by n
 lst_1 = []
@@ -77,7 +80,7 @@ lst_3 = []
 lst_3p = []
 lst_4 = []
 
-n_samples = 10000
+n_samples = 100000
 
 # arr_1 = np.zeros([len(n_lst), n_samples])
 arr_2 = np.zeros([len(n_lst), n_samples])
@@ -178,24 +181,29 @@ for j in range(len(n_lst)):
 	lst_3p.append(quant_3p)
 	lst_4.append(quant_4)
 
+# np.save('./results/arr_1', arr_1)
+np.save('./results/arr_2_12', arr_2)
+np.save('./results/arr_3_12', arr_3)
+np.save('./results/arr_4_12', arr_4)
+
 mean_q2_2nd = np.mean(pow(arr_2, 2), 1)
 mean_q2_3rd = np.mean(pow(arr_2, 3), 1)
 mean_q2_6th = np.mean(pow(arr_2, 6), 1)
 mean_q3_2nd = np.mean(pow(arr_3, 2), 1)
-mean_q3_3rd = np.mean(pow(arr_2, 3), 1)
+mean_q3_3rd = np.mean(pow(arr_3, 3), 1)
 mean_q3_6th = np.mean(pow(arr_3, 6), 1)
 mean_q4_2nd = np.mean(pow(arr_4, 2), 1)
-mean_q4_3rd = np.mean(pow(arr_2, 3), 1)
+mean_q4_3rd = np.mean(pow(arr_4, 3), 1)
 mean_q4_6th = np.mean(pow(arr_4, 6), 1)
 
 std_q2_2nd = np.std(pow(arr_2, 2), 1)
 std_q2_3rd = np.std(pow(arr_2, 3), 1)
 std_q2_6th = np.std(pow(arr_2, 6), 1)
 std_q3_2nd = np.std(pow(arr_3, 2), 1)
-std_q3_3rd = np.std(pow(arr_2, 3), 1)
+std_q3_3rd = np.std(pow(arr_3, 3), 1)
 std_q3_6th = np.std(pow(arr_3, 6), 1)
 std_q4_2nd = np.std(pow(arr_4, 2), 1)
-std_q4_3rd = np.std(pow(arr_2, 3), 1)
+std_q4_3rd = np.std(pow(arr_4, 3), 1)
 std_q4_6th = np.std(pow(arr_4, 6), 1)
 
 # plt.loglog(n_lst, lst_1)
@@ -233,13 +241,10 @@ std_q4_6th = np.std(pow(arr_4, 6), 1)
 # plt.savefig('./plots/quant_4_666_3.pdf')
 # plt.show()
 
-e = np.std(pow(arr_3, 6), 1)
-plt.errorbar(np.log(n_lst), np.log(lst_3), np.log(e))
-plt.xlabel('n')
-plt.ylabel('quantity 3: E[||DeltaB||^6]')
-plt.title('Quantity 3 as a function of n (p = 0.8, q = 0.2, M = 5)')
-# plt.savefig('./plots/quant_3_666_3.pdf')
-plt.show()
-
-
-
+# e = np.std(pow(arr_3, 6), 1)
+# plt.errorbar(np.log(n_lst), np.log(lst_3), np.log(std_q3_6th))
+# plt.xlabel('n')
+# plt.ylabel('quantity 3: E[||DeltaB||^6]')
+# plt.title('Quantity 3 as a function of n (p = 0.8, q = 0.2, M = 5)')
+# # plt.savefig('./plots/quant_3_666_3.pdf')
+# plt.show()
