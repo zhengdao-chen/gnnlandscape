@@ -149,10 +149,12 @@ n_samples = 20000
 n_samples_saved = 100
 
 d = 5
-p = 0.8
-q = 0.2
+# p = 0.8
+p = 5.0
+# q = 0.2
+q = 1.0
 
-# # arr_1 = np.zeros([len(n_lst), n_samples])
+# arr_1 = np.zeros([len(n_lst), n_samples])
 arr_2 = np.zeros([len(n_lst), n_samples])
 arr_3 = np.zeros([len(n_lst), n_samples])
 arr_4 = np.zeros([len(n_lst), n_samples])
@@ -180,7 +182,7 @@ for j in range(len(n_lst)):
 	avgB = np.zeros(d)
 
 	for i in range(n_samples):
-		M = get_adjacency_matrix_new(n, p * 4 / n, q * 4 / n)
+		M = get_adjacency_matrix_new(n, p / n, q / n)
 		# M = M / ((p + q) * n)
 
 		w, v = eigh(M)
@@ -253,7 +255,7 @@ for j in range(len(n_lst)):
 		quant_3p = quant_3p + pow(norm_deltaB, 2)
 		# print (norm_deltaB)
 	quant_3p = quant_3p / n_samples
-	print ('quantity 3 prime', quant_3p)
+	# print ('quantity 3 prime', quant_3p)
 
 	quant_4 = 0
 	for i in range(n_samples):
@@ -332,15 +334,15 @@ for j in range(len(n_lst)):
 # arr_3 = np.concatenate((arr_3_old, arr_3), 1)
 # arr_4 = np.concatenate((arr_4_old, arr_4), 1)
 
-np.save('./results/arr_2_sparse_8', arr_2)
-np.save('./results/arr_3_sparse_8', arr_3)
-np.save('./results/arr_4_sparse_8', arr_4)
+np.save('./results/arr_2_sparse_8_sr', arr_2)
+np.save('./results/arr_3_sparse_8_sr', arr_3)
+np.save('./results/arr_4_sparse_8_sr', arr_4)
 
-np.save('./results/X_tensor_sparse_8', X_tensor)
-np.save('./results/Y_tensor_sparse_8', Y_tensor)
-np.save('./results/A_tensor_sparse_8', A_tensor)
-np.save('./results/B_tensor_sparse_8', B_tensor)
-np.save('./results/w_tensor_sparse_8', w_tensor)
+np.save('./results/X_tensor_sparse_8_sr', X_tensor)
+np.save('./results/Y_tensor_sparse_8_sr', Y_tensor)
+np.save('./results/A_tensor_sparse_8_sr', A_tensor)
+np.save('./results/B_tensor_sparse_8_sr', B_tensor)
+np.save('./results/w_tensor_sparse_8_sr', w_tensor)
 
 # arr_2 = np.load('./results/arr_2_12.npy')
 # arr_3 = np.load('./results/arr_3_12.npy')
