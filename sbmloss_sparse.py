@@ -126,8 +126,9 @@ print ('start')
 
 # # n = 900
 # n_lst = [4, 16, 64, 256, 1024, 4096]
-# n_lst = [4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]	# different (half-)sizes of the graph
-n_lst = [4, 8, 16, 32, 64, 128, 256, 512]
+n_lst = [4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]	# different (half-)sizes of the graph
+# n_lst = [4, 8, 16, 32, 64, 128, 256, 512]
+# n_lst = [1024, 2048]
 # n_lst = [1024]
 # n_lst = [4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192]
 # # n_lst = [4, 16, 64, 256, 1024]
@@ -142,7 +143,8 @@ lst_3p = []
 lst_4 = []
 
 # n_samples = 100000
-n_samples = 20000
+# n_samples = 20000
+n_samples = 200
 # n_samples = 10000
 # n_samples = 100
 
@@ -334,15 +336,19 @@ for j in range(len(n_lst)):
 # arr_3 = np.concatenate((arr_3_old, arr_3), 1)
 # arr_4 = np.concatenate((arr_4_old, arr_4), 1)
 
-np.save('./results/arr_2_sparse_8_sr', arr_2)
-np.save('./results/arr_3_sparse_8_sr', arr_3)
-np.save('./results/arr_4_sparse_8_sr', arr_4)
+# np.save('./results/arr_2_sparse_8_sr', arr_2)
+# np.save('./results/arr_3_sparse_8_sr', arr_3)
+# np.save('./results/arr_4_sparse_8_sr', arr_4)
 
-np.save('./results/X_tensor_sparse_8_sr', X_tensor)
-np.save('./results/Y_tensor_sparse_8_sr', Y_tensor)
-np.save('./results/A_tensor_sparse_8_sr', A_tensor)
-np.save('./results/B_tensor_sparse_8_sr', B_tensor)
-np.save('./results/w_tensor_sparse_8_sr', w_tensor)
+np.save('./results/arr_2_sparse_11_sr', arr_2)
+np.save('./results/arr_3_sparse_11_sr', arr_3)
+np.save('./results/arr_4_sparse_11_sr', arr_4)
+
+np.save('./results/X_tensor_sparse_11_sr', X_tensor)
+np.save('./results/Y_tensor_sparse_11_sr', Y_tensor)
+np.save('./results/A_tensor_sparse_11_sr', A_tensor)
+np.save('./results/B_tensor_sparse_11_sr', B_tensor)
+np.save('./results/w_tensor_sparse_11_sr', w_tensor)
 
 # arr_2 = np.load('./results/arr_2_12.npy')
 # arr_3 = np.load('./results/arr_3_12.npy')
