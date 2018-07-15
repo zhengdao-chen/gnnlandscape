@@ -184,7 +184,7 @@ for j in range(len(n_lst)):
 	avgB = np.zeros(d)
 
 	for i in range(n_samples):
-		M = get_adjacency_matrix_new(n, p / n, q / n)
+		M = get_adjacency_matrix_new(n, min(1, p / n), min(1, q / n))
 		# M = M / ((p + q) * n)
 
 		w, v = eigh(M)
